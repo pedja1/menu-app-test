@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.demo.menuapp.ui.viewmodel.LoginViewModel" />
+        <variable
+            name="internetConnectionViewModel"
+            type="com.demo.menuapp.ui.viewmodel.InternetConnectionViewModel" />
+        <import type="com.demo.menuapp.data.model.State"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/splash_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textViewTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textViewSubtitle"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:text="@string/login_title"
+            android:gravity="center_horizontal"
+            android:textAppearance="?attr/textAppearanceHeadline5"/>
+
+        <TextView
+            android:id="@+id/textViewSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            android:text="@string/login_subtitle"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textAppearance="?attr/textAppearanceSubtitle1"/>
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:hint="@string/login_email_hint"
+            android:text="@={loginViewModel.username}"
+            android:enabled="@{loginViewModel.state != State.BUSY &amp;&amp; internetConnectionViewModel.internetConnectionAvailable}"
+            />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSignIn"
+            android:layout_marginBottom="@dimen/margin_xxlarge"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword"
+            android:text="@={loginViewModel.password}"
+            android:enabled="@{loginViewModel.state != State.BUSY &amp;&amp; internetConnectionViewModel.internetConnectionAvailable}"
+            />
+
+        <Button
+            android:id="@+id/buttonSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/login_button"
+            android:onClick="@{() -> loginViewModel.login()}"
+            android:enabled="@{loginViewModel.state != State.BUSY &amp;&amp; internetConnectionViewModel.internetConnectionAvailable}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

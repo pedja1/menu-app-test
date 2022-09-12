@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.demo.menuapp.ui.viewmodel.InternetConnectionViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:defaultNavHost="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="?attr/colorPrimary"
+            android:textColor="@color/white"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:text="@string/internet_connection_unavailable"
+            android:textStyle="normal"
+            android:paddingStart="@dimen/margin_large"
+            android:paddingEnd="@dimen/margin_large"
+            android:paddingTop="@dimen/margin_xlarge"
+            android:paddingBottom="@dimen/margin_xlarge"
+            android:id="@+id/textViewNoInternet"
+            android:visibility="@{viewModel.noInternetConnectionVisible &amp;&amp; !viewModel.forceHideNoInternetBanner ? View.VISIBLE : View.GONE}"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:layout_constraintTop_toTopOf="@+id/textViewNoInternet"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNoInternet"
+            android:id="@+id/imageViewDismissNoInternet"
+            android:visibility="@{viewModel.noInternetConnectionVisible &amp;&amp; !viewModel.forceHideNoInternetBanner ? View.VISIBLE : View.GONE}"
+            android:onClick="@{() -> viewModel.dismissNoInternetBanner()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

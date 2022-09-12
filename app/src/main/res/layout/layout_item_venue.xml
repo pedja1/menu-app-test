@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="obj"
+            type="com.demo.menuapp.ui.view.VenueViewItem" />
+        <variable
+            name="onItemClickListener"
+            type="com.demo.menuapp.ui.adapter.RecyclerViewBaseAdapter.OnItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_large"
+        android:paddingStart="@dimen/margin_large"
+        android:paddingEnd="@dimen/margin_large"
+        android:background="?attr/selectableItemBackground"
+        android:alpha="@{obj.enabled ? 1.0f : 0.4f}"
+        android:onClick="@{() -> onItemClickListener.onItemClicked(obj)}">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{obj.name}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ocean Drive Miami"
+            style="?attr/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            android:id="@+id/textViewTitle"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{obj.distance}"
+            tools:text="200 m"
+            style="?attr/textAppearanceSubtitle2"
+            android:id="@+id/textViewDistance"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{obj.address}"
+            tools:text="Gandijeva 1, Novi Beograd"
+            style="?attr/textAppearanceBody2"
+            android:id="@+id/textViewAddress"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDistance"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{obj.status}"
+            tools:text="Open"
+            style="?attr/textAppearanceBody2"
+            android:id="@+id/textViewOpen"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAddress"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOpen"
+            android:layout_marginTop="@dimen/margin_large"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

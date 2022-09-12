@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Menu App</string>
+    <string name="login_title">The easiest way to order</string>
+    <string name="login_subtitle">No lines. No waiting.</string>
+    <string name="login_button">Sign In</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_email_hint">Email</string>
+    <string name="dialog_error_close">Close</string>
+    <string name="dialog_error_no_permission_message">Location permission is required to use this app.</string>
+    <string name="venue_status_open">Open</string>
+    <string name="venue_status_closed">Closed</string>
+    <string name="venue_button_logout">Logout</string>
+    <string name="internet_connection_unavailable">No internet connection.</string>
+</resources>

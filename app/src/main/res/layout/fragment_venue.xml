@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="venue"
+            type="com.demo.menuapp.ui.view.VenueViewItem" />
+        <variable
+            name="viewModel"
+            type="com.demo.menuapp.ui.viewmodel.LoginViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            imageUri="@{venue.imageUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/textViewTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            style="?attr/textAppearanceHeadline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{venue.name}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewWelcomeMessage"
+            tools:text="Ocean Drive Miami" />
+
+        <TextView
+            android:id="@+id/textViewWelcomeMessage"
+            style="?attr/textAppearanceSubtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{venue.welcomeMessage}"
+            android:visibility="@{venue.welcomeMessage != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
+            tools:text="Welcome to Poké Bar" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            style="?attr/textAppearanceBody2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{venue.description}"
+            android:visibility="@{venue.description != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/textViewOpen"
+            tools:text="Poké Bar makes it easy to customize your bowl with endless toppings, proteins, mix-ins and more." />
+
+        <TextView
+            android:id="@+id/textViewOpen"
+            style="?attr/textAppearanceCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:background="@drawable/status_background"
+            android:padding="2dp"
+            android:text="@{venue.status}"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Open" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/venue_button_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_large"
+            style="@style/Widget.App.Button.White"
+            android:onClick="@{() -> viewModel.logout()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

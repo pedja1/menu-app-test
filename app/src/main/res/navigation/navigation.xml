@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation">
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.demo.menuapp.ui.fragment.FragmentLogin"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentVenues"
+            app:destination="@id/fragmentVenues"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentVenues"
+        android:name="com.demo.menuapp.ui.fragment.FragmentVenues"
+        tools:layout="@layout/fragment_venues" >
+
+        <action
+            android:id="@+id/action_fragmentVenues_to_fragmentVenue"
+            app:destination="@id/fragmentVenue" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentVenue"
+        android:name="com.demo.menuapp.ui.fragment.FragmentVenue"
+        tools:layout="@layout/fragment_venue" >
+        <argument
+            android:name="venue"
+            app:argType="com.demo.menuapp.ui.view.VenueViewItem"
+            app:nullable="false"/>
+        <action
+            android:id="@+id/action_fragmentVenue_to_fragmentLogin"
+            app:destination="@id/fragmentLogin"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
+</navigation>
